@@ -2,10 +2,59 @@
 <html>
 <head>
 	<title>Prueba</title>
+
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    	var ie6=15;
+    	var ie7=20;
+    	var ie8=65	;
+    	// se carga la api de ajax
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+
+      //funcion para crear el piechart
+      function drawChart() 
+      {
+        var data = google.visualization.arrayToDataTable([
+          ['Dato 1', 'Valor'],
+          ['IE6',  ie6],
+          ['IE7',  ie7],
+          ['IE8',  ie8]
+        ]);
+
+        var options = {
+          title: 'prueba de piechart'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+
+      function cambioPiechart()
+      {
+      	ie6=30;
+      	ie7=25;
+      	ie8=45;
+      	drawChart();
+      }
+    </script>
+
 </head>
 <body>
 	<h1>Prueba de investigacion</h1>
 	<h3>Hola Mundo</h3>
-	<p>Mi nombre es Juan David Arango me gusta jugar futbol, vido juegos y programar, son mis pasatiempos favoritos</p>
+	<p>Mi nombre es Juan David Arango, mis pasatiempos favoritos son, jugar futbol, los video juegos y programar</p>
+
+
+	<div id="piechart" style="width: 900px; height: 500px;"></div>
+	<div id="formulario">
+	<form>
+		<input type="button"	onclick="cambioPiechart()"	value="Cambiar piechart">
+	</form>
+	</div>
+
+
 </body>
 </html>
